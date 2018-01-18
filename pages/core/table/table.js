@@ -139,105 +139,153 @@ Page({
             currentTab = 0
           }
           var index = info.index
-         wx.getStorage({
-           key: 'account',
-           success: function(res) {
-             if(res.data){
-               wx.request({
-                 url: 'https://guohe3.com/api/kb',
-                 method: 'POST',
-                 data: {
-                   username: res.data.username,
-                   password: res.data.password,
-                   semester: that.data.semester
-                 },
-                 header: {
-                   'content-type': 'application/x-www-form-urlencoded' // 默认值
-                 },
-                 success: function (res) {
-                   if (res.data.code == 200) {
-                     //设置课表缓存
-                     wx.setStorage({
-                       key: that.data.semester,
-                       data: res.data.info,
-                     })
-                     console.log('设置课表缓存')
-                     var data_list = [[], [], [], [], [], [], []]
-                     var semester = '2017-2018-2'
-                     var date = semester + '_' + (parseInt(index - 1) + 1)
-                     var _data = res.data.info[parseInt(index - 1)][date]//整个学期的课表数据(未转化)
+          wx.getStorage({
+            key: that.data.semester,
+            success: function(res) {
+              console.log("从缓存中读取课表")
+              var data_list = [[], [], [], [], [], [], []]
+              var semester = '2017-2018-2'
+              var date = semester + '_' + (parseInt(index - 1) + 1)
+              var _data = res.data[parseInt(index - 1)][date]//整个学期的课表数据(未转化)
 
-                     //把行数据转换为列数据
-                     for (var i = 0; i < _data.length; i++) {
-                       for (var key in _data[i]) {
-                         if (key == 'monday') {
-                           data_list[0].push(_data[i][key])
+              //把行数据转换为列数据
+              for (var i = 0; i < _data.length; i++) {
+                for (var key in _data[i]) {
+                  if (key == 'monday') {
+                    data_list[0].push(_data[i][key])
 
-                         }
-                         if (key == 'tuesday') {
-                           data_list[1].push(_data[i][key])
-                         }
-                         if (key == 'wednesday') {
-                           data_list[2].push(_data[i][key])
-                         }
-                         if (key == 'thursday') {
-                           data_list[3].push(_data[i][key])
-                         }
-                         if (key == 'friday') {
-                           data_list[4].push(_data[i][key])
-                         }
-                         if (key == 'saturday') {
-                           data_list[5].push(_data[i][key])
-                         }
-                         if (key == 'sunday') {
-                           data_list[6].push(_data[i][key])
-                         }
-                       }
-                     }
+                  }
+                  if (key == 'tuesday') {
+                    data_list[1].push(_data[i][key])
+                  }
+                  if (key == 'wednesday') {
+                    data_list[2].push(_data[i][key])
+                  }
+                  if (key == 'thursday') {
+                    data_list[3].push(_data[i][key])
+                  }
+                  if (key == 'friday') {
+                    data_list[4].push(_data[i][key])
+                  }
+                  if (key == 'saturday') {
+                    data_list[5].push(_data[i][key])
+                  }
+                  if (key == 'sunday') {
+                    data_list[6].push(_data[i][key])
+                  }
+                }
+              }
 
-                     that.setData({
-                       kbData: data_list,
-                       index: index - 1,
-                       currentTab: currentTab,
-                       load: 'hide',
-                       content: 'show'
-                     })
-                   
+              that.setData({
+                kbData: data_list,
+                index: index - 1,
+                currentTab: currentTab,
+                load: 'hide',
+                content: 'show'
+              })
+            },fail(){
+              wx.getStorage({
+                key: 'account',
+                success: function (res) {
+                  if (res.data) {
+                    wx.request({
+                      url: 'https://guohe3.com/api/kb',
+                      method: 'POST',
+                      data: {
+                        username: res.data.username,
+                        password: res.data.password,
+                        semester: that.data.semester
+                      },
+                      header: {
+                        'content-type': 'application/x-www-form-urlencoded' // 默认值
+                      },
+                      success: function (res) {
+                        if (res.data.code == 200) {
+                          //设置课表缓存
+                          wx.setStorage({
+                            key: that.data.semester,
+                            data: res.data.info,
+                          })
+                          console.log('设置课表缓存')
+                          var data_list = [[], [], [], [], [], [], []]
+                          var semester = '2017-2018-2'
+                          var date = semester + '_' + (parseInt(index - 1) + 1)
+                          var _data = res.data.info[parseInt(index - 1)][date]//整个学期的课表数据(未转化)
 
-                   }
-                   else {
-                     console.log('用户名或密码错误')
-                   }
-                 },
-                 fail() {
-                   wx.showToast({
-                     title: '网络获取失败',
-                     icon: 'loading',
-                     duration: 2000
-                   })
-                   
-                   that.onLoad()
-                 }
-               })
-             }
-           },fail(){
-             console.log('账号未登录')
-             wx.showModal({
-               title: '提示',
-               content: '请先用教务系统账号登录',
-               success: function (res) {
-                 if (res.confirm) {
-                   console.log('用户点击确定')
-                   wx.navigateTo({
-                     url: '/pages/login/login',
-                   })
-                 } else if (res.cancel) {
-                   console.log('用户点击取消')
-                 }
-               }
-             })
-           }
-         })
+                          //把行数据转换为列数据
+                          for (var i = 0; i < _data.length; i++) {
+                            for (var key in _data[i]) {
+                              if (key == 'monday') {
+                                data_list[0].push(_data[i][key])
+
+                              }
+                              if (key == 'tuesday') {
+                                data_list[1].push(_data[i][key])
+                              }
+                              if (key == 'wednesday') {
+                                data_list[2].push(_data[i][key])
+                              }
+                              if (key == 'thursday') {
+                                data_list[3].push(_data[i][key])
+                              }
+                              if (key == 'friday') {
+                                data_list[4].push(_data[i][key])
+                              }
+                              if (key == 'saturday') {
+                                data_list[5].push(_data[i][key])
+                              }
+                              if (key == 'sunday') {
+                                data_list[6].push(_data[i][key])
+                              }
+                            }
+                          }
+
+                          that.setData({
+                            kbData: data_list,
+                            index: index - 1,
+                            currentTab: currentTab,
+                            load: 'hide',
+                            content: 'show'
+                          })
+
+
+                        }
+                        else {
+                          console.log('用户名或密码错误')
+                        }
+                      },
+                      fail() {
+                        wx.showToast({
+                          title: '网络获取失败',
+                          icon: 'loading',
+                          duration: 2000
+                        })
+
+                        that.onLoad()
+                      }
+                    })
+                  }
+                }, fail() {
+                  console.log('账号未登录')
+                  wx.showModal({
+                    title: '提示',
+                    content: '请先用教务系统账号登录',
+                    success: function (res) {
+                      if (res.confirm) {
+                        console.log('用户点击确定')
+                        wx.navigateTo({
+                          url: '/pages/login/login',
+                        })
+                      } else if (res.cancel) {
+                        console.log('用户点击取消')
+                      }
+                    }
+                  })
+                }
+              })
+            }
+          })
+        
           
 
           

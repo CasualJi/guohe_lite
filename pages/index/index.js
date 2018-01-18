@@ -242,10 +242,10 @@ Page({
         }
       },
       fail: function () {
-        console.log('未登录')
-        wx.navigateTo({
-          url: '/pages/login/login',
-        })
+        // console.log('未登录')
+        // wx.navigateTo({
+        //   url: '/pages/login/login',
+        // })
       }
     })
   },
