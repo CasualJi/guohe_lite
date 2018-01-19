@@ -1,6 +1,7 @@
 <view class='contant'>
   <view class='user-info'>
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <view class="userinfo-username">{{userInfo.nickName}}</view>
   </view>
   <view class='card'>
   </view>

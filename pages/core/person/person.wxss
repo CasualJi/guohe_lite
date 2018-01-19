@@ -1,19 +1,24 @@
 .user-info {  
-   border: 1px solid black;
-}  
   
+   margin:10px 40% 10px 40%;
+}  
+
 .userinfo-avatar {  
   width: 128rpx;  
   height: 128rpx;  
-  margin: 0 auto;
+  margin:1px 5% 1px;
+  text-align: center;
   border-radius: 50%;  
  
 }  
-.contant{
-  display: flex;
+.userinfo-username{
+  text-align: center;
+  font-size: 25rpx;
 }
+
+
 page{
-  background: url('http://106.14.220.63/static/images/day_images/img1.jpg');
+  
   background-position:center;
   background-size:100%
 }

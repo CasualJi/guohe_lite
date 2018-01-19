@@ -1,10 +1,9 @@
 {
   "pages": [
+    "pages/core/person/person",
     "pages/index/index",
     "pages/core/table/table",
     "pages/login/login",
-    "pages/core/person/person",
-   
    
 
     "pages/core/score/score",

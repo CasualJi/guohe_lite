@@ -109,11 +109,14 @@ page {
   background: #fff;
   border-top: 1rpx solid #F6F6EF;
   border-bottom: 1rpx solid #F6F6EF;
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom center;
   overflow: hidden;
+  margin-left: 12rpx;
+  margin-right: 12rpx;
+   border-radius: 15rpx;
 }
 .main-card-item#kb{
   /*background-image: url('/images/index/kb-bg.png');*/
