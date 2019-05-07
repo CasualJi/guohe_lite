@@ -1,20 +1,20 @@
 <view class="container">
   <view class=".new-wrapper">
     <swiper class="swiper" indicator-dots="true" autoplay="true">
-      <swiper-item wx:for="{{topStories}}">
+      <swiper-item wx:key="unique" wx:for="{{topStories}}">
         <view class="top-wrapper">
-          <navigator url="../daily/content/content?id={{item.id}}">
+          <navigator  url="../daily/content/content?id={{item.id}}">
             <text class="top-title">{{item.title}}</text>
             <image class="top-img" src="{{item.image}}" mode="aspectFill"></image>
           </navigator>
         </view>
       </swiper-item>
     </swiper>
-    <view class="stories-group" wx:for="{{storyList}}" wx:for-item="list">
+    <view class="stories-group" wx:key="unique" wx:for="{{storyList}}" wx:for-item="list">
       <view class="stories-box">
         <text class="s-b-title">{{list.title}}</text>
         <view class="s-b-list">
-          <navigator url="../daily/content/content?id={{stories.id}}" wx:for="{{list.stories}}" wx:for-item="stories">
+          <navigator url="../daily/content/content?id={{stories.id}}" wx:key="unique" wx:for="{{list.stories}}" wx:for-item="stories">
             <view class="l-item">
               <view class="l-item-title">
                 {{stories.title}}

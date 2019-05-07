@@ -14,14 +14,11 @@
         <view wx:if="{{item.year=='all'}}" class="td">综合</view>
         <view wx:else class="td">{{item.year}}</view>
         <view class="td">{{item.point}}</view>
-
-
       </view>
       <view class="tr" wx:else>
         <view wx:if="{{item.year=='all'}}" class="td">综合</view>
         <view wx:else class="td">{{item.year}}</view>
         <view class="td">{{item.point}}</view>
-
       </view>
     </block>
   </view>
@@ -50,15 +47,15 @@
       </view>
       <block wx:for="{{change_scores}}" wx:key="{{code}}">
         <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-          <view class="td">{{item.course_name}}</view>
-          <view class="td">{{item.examination_method}}</view>
+          <view class="td">{{item.courseName}}</view>
+          <view class="td">{{item.examinationMethod}}</view>
           <view class="td">{{item.credit}}</view>
           <view class="td" wx:if="{{item.score<60||item.score=='不通过'||item.score=='不及格'}}" style='color:red'>{{item.score}}</view>
           <view class="td" wx:else="{{item.score>60}}">{{item.score}}</view>
         </view>
         <view class="tr" wx:else>
-          <view class="td">{{item.course_name}}</view>
-          <view class="td">{{item.examination_method}}</view>
+          <view class="td">{{item.courseName}}</view>
+          <view class="td">{{item.examinationMethod}}</view>
           <view class="td">{{item.credit}}</view>
           <view class="td" wx:if="{{item.score<60||item.score=='不通过'||item.score=='不及格'}}" style='color:red'>{{item.score}}</view>
           <view class="td" wx:else="{{item.score>60}}">{{item.score}}</view>

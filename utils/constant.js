@@ -1,8 +1,11 @@
+//学生登陆
+const login ='https://guohe3.com/api/student/login'
+
 //查询学生校历信息
-const xiaoli = 'https://guohe3.com/xiaoli'
+const xiaoli = 'https://guohe3.com/api/justInfo/getSchoolCalendar'
 
 //查询学生的所有课表
-const kb = 'https://guohe3.com/get_all_kb'
+const kb = 'https://guohe3.com/api/student/getSchoolTimetable'
 
 //获取云端推送的消息
 const get_mess = 'https://guohe3.com/getToast'
@@ -13,56 +16,51 @@ const get_exercise = 'https://guohe3.com/vpnRun'
 //获取学生俱乐部信息
 const get_sport = 'https://guohe3.com/vpnSport'
 
+//获取学生成绩
+const get_grade ='https://guohe3.com/api/student/getScoreAll'
+
+//获取学生绩点
+const get_gpa ='https://guohe3.com/api/student/getJidian'
+
+//反馈接口
+const feedback ='https://guohe3.com/api/feedback/create'
+
 //首页item数组的信息
 const core = [
   [{
       id: 'kb',
-      name: '课表',
-      disabled: false,
-      teacher_disabled: false,
-      offline_disabled: false
+      name: '表',
+      enable:true
     },
     {
       id: 'score',
-      name: '成绩',
-      disabled: false,
-      teacher_disabled: true,
-      offline_disabled: false
+      name: '分',
+      enable:true
     },
     {
       id: 'classroom',
-      name: '空教室',
-      disabled: false,
-      teacher_disabled: false,
-      offline_disabled: true
+      name: '屋',
+      enable:true
     },
     {
       id: 'library',
-      name: '馆藏',
-      disabled: false,
-      teacher_disabled: false,
-      offline_disabled: false
+      name: '书',
+      enable: true,
     },
     {
       id: 'bus',
-      name: '校车',
-      disabled: false,
-      teacher_disabled: true,
-      offline_disabled: false
+      name: '车',
+      enable: true
     },
     {
       id: 'sport',
-      name: '体育',
-      disabled: false,
-      teacher_disabled: true,
-      offline_disabled: false
+      name: '体',
+      enable: true
     },
     {
       id: 'guide',
-      name: '校园导览',
-      disabled: false,
-      teacher_disabled: true,
-      offline_disabled: false
+      name: '图',
+      enable: true
     }
   ]
 ]
@@ -163,6 +161,8 @@ const card = {
 
 
 module.exports = {
+  //登陆
+  LOGIN:login,
   //获取校历
   XIAO_LI: xiaoli,
   //获取课表
@@ -174,5 +174,11 @@ module.exports = {
   //获取学生早操信息
   EXERCISE: get_exercise,
   //获取学生俱乐部信息
-  CLUB: get_sport
+  CLUB: get_sport,
+  //获取绩点信息
+  GPA:get_gpa,
+  //获取成绩信息
+  GRADE:get_grade,
+  //反馈
+  FEEDBACK:feedback
 };

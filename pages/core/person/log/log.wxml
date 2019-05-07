@@ -4,13 +4,17 @@
    <image class='logo' src='../../../../images/log.png'></image>
   </view>
   <view class='top'>「果核Lite」正在逐渐完善中，鲁迅说过：BUG就像海绵里的水。假如你在使用中遇到问题，可以点击「反馈」或者电邮casual_ji@hotmail.com(๑•́ ₃ •̀๑)</view>
-  <view class='text_title'>v1.0</view>
-  <view class='text'>完成整体风格设计。由于时间紧迫，提供了成绩、课表两个主要功能以便使用，后续将会持续更新。</view>
+
+  <view class='text_title'>v2.9</view>
+  <view class='text'>这应该是初代开发者们发布的最后一个版本了，重新设计了后台逻辑</view>
+
+  <view class='text_title'>v1.2</view>
+  <view class='text'>修复课表缓存问题，完成「CET」模块</view>
+
   <view class='text_title'>v1.1</view>
   <view class='text'>完成「空教室」「馆藏」「校车」「体育」功能，动态获取「大事儿」，修复部分BUG，修改部分样式。</view>
 
-  <view class='text_title'>v1.2</view>
-  <view class='text'>修复课表缓存问题，完成「CET」模块，「小曲儿」设定为随机。</view>
-
+  <view class='text_title'>v1.0</view>
+  <view class='text'>完成整体风格设计。由于时间紧迫，提供了成绩、课表两个主要功能以便使用，后续将会持续更新。</view>
 
 </view>

@@ -6,7 +6,6 @@
     "pages/login/login",
     "pages/logs/logs",
     "pages/core/sport/sport",
-    "pages/core/cet/cet",
     "pages/core/library/library",
     "pages/core/library/book/book",
     "pages/core/classroom/classroom",

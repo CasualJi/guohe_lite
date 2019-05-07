@@ -3,7 +3,7 @@
   <view class='logo' style='margin-bottom:20px'>
     <image class='logo' src='../../../../images/logo.jpg'></image>
   </view>
-  <view class='edition'>「果核Lite」2.8.0</view>
+  <view class='edition'>「果核Lite」2.9.0</view>
 
   <!-- <view style='width:80rpx;background-color: #f8f8f8'></view> -->
 

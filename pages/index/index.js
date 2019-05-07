@@ -64,14 +64,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function(e) {
-    // 使用 wx.createAudioContext 获取 audio 上下文 context
-    this.audioCtx = wx.createAudioContext('myAudio')
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
@@ -141,6 +133,7 @@ Page({
 
   //获取校历信息
   getXiaoli: function() {
+    console.log('获取校历信息')
     var that = this
     try {
       //查看是否已经登录
@@ -153,6 +146,7 @@ Page({
           'username': username,
           'password': password
         }
+        console.log(param)
         //发送获取学生校历信息的请求
         HttpUtils._post(
           Constant.XIAO_LI,
@@ -175,6 +169,8 @@ Page({
 
   //获取校历成功的回掉函数
   getXiaoliSuccess: function(res) {
+    console.log('获取校历成功的回掉函数:')
+    console.log(res)
     if (res.data.code == 500) {
       wx.showToast({
         title: '教务系统异常',
@@ -184,10 +180,11 @@ Page({
     if (res.data.code == 200) {
       //全部校历信息
       var info = res.data.info;
+      console.log(info)
       //该学生全部学年信息
-      var all_year = info.all_year;
+      var all_year = info['allYear'];
       //当前周次
-      var weekNum = info.weekNum;
+      var weekNum = info['weekNum'];
       try {
         wx.setStorageSync('all_year', all_year)
         if (weekNum > 0 && weekNum < 21)
@@ -202,12 +199,13 @@ Page({
 
   //获取校历失败的回掉函数
   getXiaoliFail: function(e) {
-    console.log(e)
+    console.log('获取校历失败的回掉函数：'+e)
   },
 
   //点击首页的item跳转到相应的页面
   navigateTo: function(event) {
     var id = event.currentTarget.dataset.info.id
+    var disabled = event.currentTarget.dataset.info.disabled
     if (id == 'guide') {
       //如果点击的是自助导览，跳转至“江科大校园导览”小程序
       wx.navigateToMiniProgram({
@@ -220,16 +218,41 @@ Page({
         }
       })
     } else {
-      wx.navigateTo({
-        url: '/pages/core/' + id + '/' + id
-      })
+      if (disabled) {
+        wx.showModal({
+          title: '抱歉',
+          content: '为了更好的用户体验，该功能正在重构，敬请期待！',
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/core/' + id + '/' + id
+        })
+      }
     }
   },
 
   //初始化首页头部内容
   initHeader: function() {
+    var that = this
+    const query = Bmob.Query("header");
+    var headers = new Array();
+    query.find().then(res => {
+      for (var i = 0; i < res.length; i++) {
+        var obj = new Object();
+        obj.name = res[i]['name']
+        obj.id = res[i]['id']
+        obj.enable = res[i]['enable']
+        obj.order=res[i]['order']
+        headers.push(obj)
+      }
+      that.setData({
+        //根据order的次序排序
+        cores: headers.sort(util.compareByKeys('order')),
+      })
+    });
+
     this.setData({
-      cores: Constant.CORE,
+      // cores: Constant.CORE,
       card: Constant.CARD
     })
   },
@@ -277,7 +300,7 @@ Page({
         }
       }
     } catch (e) {
-      console.log(e)
+      console.log('今日课表获取失败：'+e)
     }
     if (todayKbList.length > 0) {
       this.setData({

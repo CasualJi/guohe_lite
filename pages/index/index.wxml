@@ -2,9 +2,9 @@
 
 <!--功能导航-->
 <swiper class="main-swpier" indicator-dots="true" indicator-active-color="#73b4ef">
-  <swiper-item class="main-core" wx:for="{{cores}}" wx:for-item="core" wx:key="id">
-    <block wx:for="{{core}}" wx:key="id">
-      <view class='main-core-item' bindtap='navigateTo' data-info='{{item}}'>
+  <swiper-item class="main-core">
+    <block wx:for="{{cores}}" wx:key="id">
+      <view class='main-core-item' bindtap='navigateTo' data-info='{{item}}' wx:if="{{item.enable}}">
         <image class="core-item-icon" src="/images/core/{{item.id}}.png"></image>
         <text class="core-item-name">{{item.name}}</text>
       </view>
@@ -20,10 +20,10 @@
     <navigator url="/pages/core/kb/kb">
       <view class="card-item-hd">
         <image class="card-item-icon" src="/images/core/table.png"></image>
-        <text class="card-item-name">今日课表</text>
+        <text class="card-item-name">今日</text>
       </view>
       <view wx:if="{{!isTodayKb}}" class="card-item-bd kb-nothing">
-        <text wx:if="{{!isTodayKb}}">今天居然没有课~😆</text>
+        <text wx:if="{{!isTodayKb}}">今天居然很轻松~😆</text>
       </view>
 
       <view wx:else class="card-item-bd">
@@ -65,11 +65,19 @@
     <view>
       <view>
         <view style="text-align: center">
-          <view style="text-align:center;font-size:40rpx;margin:30rpx;color:grey;font-family:Courier New">{{oneDate}}</view>
+          <view style="text-align:center;font-size:40rpx;margin:30rpx;color:grey;font-family:Courier New">
+            <text selectable='true'>{{oneDate}}</text>
+          </view>
           <image style="background-color: #eeeeee;" mode="scaleToFill" src="{{oneImg}}" bindtap='imgPreview'></image>
-          <view style="text-align:center;font-size:28rpx;color:grey;margin:20rpx;">{{oneImgAuthor}}</view>
-          <view style="text-align:center;font-size:28rpx;color:grey;margin:20rpx;">{{oneWord}}</view>
-          <view style="text-align:center;font-size:22rpx;color:grey;margin:30rpx">{{oneWordFrom}}</view>
+          <view style="text-align:center;font-size:28rpx;color:grey;margin:20rpx;">
+            <text selectable='true'>{{oneImgAuthor}}</text>
+          </view>
+          <view style="text-align:center;font-size:28rpx;color:grey;margin:20rpx;">
+            <text selectable='true'>{{oneWord}}</text>
+          </view>
+          <view style="text-align:center;font-size:22rpx;color:grey;margin:30rpx">
+            <text selectable='true'>{{oneWordFrom}}</text>
+          </view>
         </view>
       </view>
 

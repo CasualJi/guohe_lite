@@ -13,7 +13,7 @@
     </view>
     <view class="control-group">
       <view class="control">
-        <input bindfocus="username" type="number" name='username'  placeholder="学号" placeholder-style="margin-left:5rpx;font-size:0.8rem;color:white" ></input>
+        <input bindfocus="username" type="number" name='username'  placeholder="账号" placeholder-style="margin-left:5rpx;font-size:0.8rem;color:white" ></input>
       </view>
       <view class="control">
         <input type="password" name='password'  bindfocus="pwdFocus" placeholder="密码"  placeholder-style="margin-left:5rpx;font-size:0.8rem;color:white"></input>
